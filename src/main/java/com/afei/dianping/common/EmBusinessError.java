@@ -2,7 +2,10 @@ package com.afei.dianping.common;
 
 public enum EmBusinessError {
 
-    NO_OBJECT_FOUND(1000,"请求对象不存在"),
+    NO_OBJECT_FOUND(10001,"请求对象不存在"),
+    UNKNOWN_ERROR(10002,"未知错误"),
+    NO_HANDLER_FOUND_ERROR(10003,"找不到执行的路径操作"),
+    BIND_EXCEPTION_ERROR(10004,"请求参数错误"),
     ;
     private Integer errCode;
 

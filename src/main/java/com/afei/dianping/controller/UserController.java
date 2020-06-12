@@ -1,12 +1,12 @@
 package com.afei.dianping.controller;
 
 import com.afei.dianping.common.BusinessException;
-import com.afei.dianping.common.CommonError;
 import com.afei.dianping.common.CommonRes;
 import com.afei.dianping.common.EmBusinessError;
 import com.afei.dianping.model.UserModel;
 import com.afei.dianping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class UserController {
 
     @Autowired

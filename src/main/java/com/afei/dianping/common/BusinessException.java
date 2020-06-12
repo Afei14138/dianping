@@ -7,4 +7,12 @@ public class BusinessException extends Exception{
         super();
         this.commonError = new CommonError(emBusinessError);
     }
+
+    public CommonError getCommonError() {
+        return commonError;
+    }
+
+    public void setCommonError(CommonError commonError) {
+        this.commonError = commonError;
+    }
 }
