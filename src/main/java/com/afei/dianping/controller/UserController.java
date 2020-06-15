@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/user")
@@ -20,7 +21,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("get")
+    @RequestMapping("/get")
     @ResponseBody
     public CommonRes getUser(@RequestParam(name = "id") Integer id) throws BusinessException {
         UserModel userModel = userService.getUser(id);
@@ -32,4 +33,13 @@ public class UserController {
         }
 
     }
+
+    @RequestMapping("/index")
+    public ModelAndView index(){
+        ModelAndView modelAndView = new ModelAndView("/index.html");
+        return modelAndView;
+    }
+
+
+
 }

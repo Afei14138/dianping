@@ -13,8 +13,14 @@ spring:
     # 配置druid做datasource连接池管理
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-  #禁用默认的404处理请求
+  # 如果所有的controller都没有命中，使用默认的系统静态资源处理器处理
   resources:
-    add-mappings: false
+    add-mappings: true
   mvc:
     throw-exception-if-no-handler-found: true
+    #接入前端静态资源页面
+    static-path-pattern: /static/**
+  thymeleaf:
+    prefix: classpath:/templates
+    suffix: .html
+
