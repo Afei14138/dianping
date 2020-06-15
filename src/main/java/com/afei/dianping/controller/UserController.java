@@ -36,6 +36,7 @@ public class UserController {
 
     @RequestMapping("/index")
     public ModelAndView index(){
+        //String userName = "imooc";
         ModelAndView modelAndView = new ModelAndView("/index.html");
         return modelAndView;
     }
