@@ -2,6 +2,7 @@ package com.afei.dianping.controller.admin;
 
 import com.afei.dianping.common.BusinessException;
 import com.afei.dianping.common.EmBusinessError;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -24,6 +26,9 @@ public class AdminController {
 
     @Value("${admin.encryptPassword}")
     private String encryptPassword;
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     public static String CURRENT_ADMIN_SESSION = "currentAdminSession";
 
@@ -41,14 +46,19 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(@RequestParam("email")String email,
-                              @RequestParam("password")String password) throws BusinessException {
+    public String login(@RequestParam("email")String email,
+                              @RequestParam("password")String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         if(StringUtils.isEmpty(email) || StringUtils.isEmpty(password)){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"用户名密码不能为空");
-
         }
-        ModelAndView modelAndView = new ModelAndView("/admin/admin/login");
-        return modelAndView;
+        if(email.equals(this.email) && encodeByMd5(password).equals(this.encryptPassword)){
+            //登录成功，重定向
+            httpServletRequest.getSession().setAttribute(CURRENT_ADMIN_SESSION,email);
+            return "redirect:/admin/admin/index";
+        }else{
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"用户名密码错误");
+        }
+
     }
 
     private String encodeByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
