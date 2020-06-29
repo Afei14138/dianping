@@ -1,5 +1,6 @@
 package com.afei.dianping.controller.admin;
 
+import com.afei.dianping.common.AdminPermission;
 import com.afei.dianping.common.BusinessException;
 import com.afei.dianping.common.EmBusinessError;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class AdminController {
     public static String CURRENT_ADMIN_SESSION = "currentAdminSession";
 
     @RequestMapping("/index")
+    @AdminPermission
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("/admin/admin/index");
         return modelAndView;
