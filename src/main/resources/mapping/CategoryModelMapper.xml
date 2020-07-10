@@ -30,6 +30,11 @@
     order by sort DESC, id ASC
   </select>
 
+  <select id="countAllCategory" resultType="java.lang.Integer">
+    select count(1)
+    from category
+  </select>
+
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--

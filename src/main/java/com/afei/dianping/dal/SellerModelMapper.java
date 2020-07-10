@@ -55,5 +55,8 @@ public interface SellerModelMapper {
      */
     int updateByPrimaryKey(SellerModel record);
 
+    Integer countAllSeller();
+
+
 
 }

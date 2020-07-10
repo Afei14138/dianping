@@ -56,4 +56,6 @@ public interface CategoryModelMapper {
      * @mbg.generated Wed Jul 08 19:26:46 CST 2020
      */
     int updateByPrimaryKey(CategoryModel record);
+
+    Integer countAllCategory();
 }

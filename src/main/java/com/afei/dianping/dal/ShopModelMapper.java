@@ -53,4 +53,6 @@ public interface ShopModelMapper {
      * @mbg.generated Wed Jul 08 21:12:25 CST 2020
      */
     int updateByPrimaryKey(ShopModel record);
+
+    Integer countAllShop();
 }

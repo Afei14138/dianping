@@ -36,7 +36,7 @@ public class ShopServiceImpl implements ShopService {
         shopModel.setUpdatedAt(new Date());
 
         //校验商家是否存在正确
-        SellerModel sellerModel = sellerService.get(shopModel.getId());
+        SellerModel sellerModel = sellerService.get(shopModel.getSellerId());
         if(sellerModel == null){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"商户不存在");
         }
@@ -71,5 +71,10 @@ public class ShopServiceImpl implements ShopService {
             shopModel.setCategoryModel(categoryService.get(shopModel.getCategoryId()));
         });
         return shopModelList;
+    }
+
+    @Override
+    public Integer countAllShop() {
+        return shopModelMapper.countAllShop();
     }
 }
