@@ -264,4 +264,9 @@
       icon_url = #{iconUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="recommend" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from shop
+    order by id ASC
+  </select>
 </mapper>
