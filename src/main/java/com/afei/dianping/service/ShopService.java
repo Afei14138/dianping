@@ -16,7 +16,10 @@ public interface ShopService {
 
     List<ShopModel> recommend(BigDecimal longitude, BigDecimal latitude);
 
+    List<ShopModel> search(BigDecimal longitude, BigDecimal latitude, String keyword, Integer orderby, Integer categoryId);
+
     Integer countAllShop();
+
 
 
 }
